@@ -19,8 +19,17 @@ type LoginOutput {
   token: String!
 }
 
+type PathType {
+  id: String!
+  name: String!
+  icon: String!
+  createAt: String!
+  users: [User!]!
+}
+
 type Query {
   users: [User!]!
+  getPath(id: String!): PathType!
 }
 
 type Mutation {

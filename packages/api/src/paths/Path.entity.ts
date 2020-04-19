@@ -1,28 +1,29 @@
-import { Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn } from "typeorm";
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, ManyToOne } from "typeorm";
+import { User } from '../User/User.entity';
 
-@ObjectType()
+
+
 @Entity()
 @Unique(['name'])
 export class PathLesson {
 
-    @PrimaryGeneratedColumn()
-    @Field(()=> ID)
+    @PrimaryGeneratedColumn()    
     id: string;
 
-    @Column()
-    @Field()
+    @Column()    
     name: string;
 
-    @Column()
-    @Field()
+    @Column()    
     icon: string;
 
-    @Column()
-    @Field()
+    @Column()    
     description: string;
 
-    @CreateDateColumn()
-    @Field()
+    @CreateDateColumn()    
     createAt: Date;
+
+    @ManyToOne(_type => User, user => user.paths, {eager:false})
+
+    @Column()
+    users:string;
 };

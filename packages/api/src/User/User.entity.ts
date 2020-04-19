@@ -1,5 +1,6 @@
 import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, OneToMany } from 'typeorm';
+import { PathLesson } from '../paths/Path.entity';
 
 @ObjectType()
 export class User {
@@ -17,6 +18,7 @@ export class User {
 
   @Field()
   createdAt: Date;
+    paths: any;
 }
 
 
@@ -40,6 +42,10 @@ export class UserWithPassword implements User  {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @OneToMany(_type => PathLesson, path => path.users, {eager:true} )
+  paths:PathLesson[];
+
 }
 
 

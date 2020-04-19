@@ -5,12 +5,14 @@ import path from 'path';
 import { UserModule } from './User';
 import { DatabaseModule } from './Database.module';
 import { AuthModule } from './Auth';
+import { PathModule } from './paths/Path.index';
 
 @Module({
   imports: [
     AuthModule,
     UserModule,
-
+    PathModule,
+    
     DatabaseModule,
 
     GraphQLModule.forRoot({
